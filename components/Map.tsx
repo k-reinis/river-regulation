@@ -1,19 +1,33 @@
-// @ts-nocheck
+
 "use client";
 
 import { MapContainer, TileLayer, LayersControl, GeoJSON, LayerGroup } from "react-leaflet";
 import { useEffect, useState } from "react";
 import "leaflet/dist/leaflet.css";
+import { Feature, FeatureCollection, GeoJsonProperties, Geometry } from "geojson";
 
-const position = [56.5, 23.5];
+
+type LayerConfig = {
+  name: string;
+  url: string;
+  color: string;
+  fillOpacity?: number;
+  opacity?: number;
+  data: FeatureCollection | null;
+  checked?: boolean;
+  group?: string;
+};
+
+const position: [number, number] = [56.5, 23.5];
+
 
 export default function Map() {
-  const [geojsonLayers, setGeojsonLayers] = useState([
-    { name: "Upes", url: "/upes_inside.geojson", color: "purple", fillOpacity: 0, data: null, checked: false },
+  const [geojsonLayers, setGeojsonLayers] = useState<LayerConfig[]>([
+
     { name: "Pētījuma teritorija", url: "../petijuma_teritorija.geojson", color: "green", fillOpacity: 0, data: null, checked: true  },
-    { name: "Rivers (inside)", url: "/upes_inside.geojson", color: "blue", opacity: 1, data: null, group: "Rivers", checked: false },
-    { name: "Rivers (outside)", url: "/upes_outside.geojson", color: "blue", opacity: 0.2, data: null, group: "Rivers", checked: false }, 
-    { name: "Nemainītie posmi", url: "/nereguleti.geojson", color: "rgb(0, 64, 128)", opacity: 1, data: null, checked: true }, 
+    { name: "Upes (teritorijā)", url: "/upes_inside.geojson", color: "blue", opacity: 1, data: null, group: "Rivers", checked: false },
+    { name: "Upes (ārpus teritorijas)", url: "/upes_outside.geojson", color: "blue", opacity: 0.2, data: null, group: "Rivers", checked: false }, 
+    { name: "Neregulēti", url: "/nereguleti.geojson", color: "rgb(0, 64, 128)", opacity: 1, data: null, checked: true }, 
     { name: "Regulēti pirms 1940", url: "/reguleti_pirms_1940.geojson", color: "rgb(0, 191, 255)", opacity: 1, data: null, checked: true  },
     { name: "Regulēti pēc 1940", url: "/reguleti_pec_1940.geojson", color: "rgb(128, 0, 128)", opacity: 1, data: null, checked: true  }
   ]);
@@ -71,13 +85,15 @@ export default function Map() {
             data={layer.data}
             style={() => ({
               color: layer.color,
-              weight: 2,
+              weight: 3,
               fillOpacity: layer.fillOpacity ?? 0,
               opacity: layer.opacity ?? 1,
+
             })}
             onEachFeature={
               layer.name === "Regulēti pirms 1940" || layer.name === "Regulēti pēc 1940" || layer.name === "Neregulēti"
-                ? (feature, leafletLayer) => {
+                ? (feature: Feature<Geometry, GeoJsonProperties>,
+                  leafletLayer: L.Layer) => {
                     let popupContent = "<table>";
                     for (const key in feature.properties) {
                       popupContent += `<tr><td><b>${key}</b></td><td>${feature.properties[key]}</td></tr>`;
@@ -95,14 +111,14 @@ export default function Map() {
 
 
         {/* Combined overlay for rivers */}
-        <LayersControl.Overlay name="Rivers (inside/outside)" >
+        <LayersControl.Overlay name="Mūsdienu upes" >
           <LayerGroup>
             {geojsonLayers
               .filter(layer => layer.group === "Rivers" && layer.data)
               .map(layer => (
                 <GeoJSON
                   key={layer.name}
-                  data={layer.data}
+                  data={layer.data!}
                   style={() => ({
                     color: layer.color,
                     weight: 2,
