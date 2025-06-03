@@ -1,8 +1,8 @@
 
 "use client";
 
-import { MapContainer, TileLayer, LayersControl, GeoJSON, LayerGroup } from "react-leaflet";
-import { useEffect, useState, useCallback } from "react";
+import { MapContainer, TileLayer, GeoJSON, LayerGroup } from "react-leaflet";
+import { useEffect, useState, useMemo } from "react";
 import "leaflet/dist/leaflet.css";
 import { Feature, FeatureCollection, GeoJsonProperties, Geometry } from "geojson";
 import LegendEntry from "./legendEntry";
@@ -40,13 +40,7 @@ type BaseLayerConfig = {
 
 type VisibilityState = Record<string, boolean>;
 
-type LegendEntryProps = {
-  color: string;
-  name: string;
-  checked: boolean;
-  onChange: (checked: boolean) => void;
 
-};
 
 
 
@@ -125,12 +119,11 @@ export default function Map() {
     );
   };
   
-  const debouncedToggleLayer = useCallback(
+  const debouncedToggleLayer = useMemo(() => 
     debounce((name: string, isVisible: boolean) => {
       setVisibility(prev => ({ ...prev, [name]: isVisible }));
     }, 300),
-    []
-  );
+  []);
 
   const [legendOpen, setLegendOpen] = useState(true);
 
@@ -325,6 +318,7 @@ useEffect(() => {
           name={layer.name}
           checked={visibility[layer.name]}
           onChange={(checked) => debouncedToggleLayer(layer.name, checked)}
+
         />
       ))}
     {/* Grouped layers */}
@@ -386,7 +380,7 @@ useEffect(() => {
 <MapDescription>
 <p>*Svētes baseina robežas norādītas, jo Svētes baseina upēm pieejama plašāka informācija</p>
     <p>
-Karšu pārlūks izstrādāts pētījumā "Upju regulēšana 20. gadsimta agro-industriālajā ainavā: Zemgales līdzenuma piemērs", projekta FLPP “Ūdeņu kultūras: transformatīva pieeja ilgtspējīgām cilvēka-ūdeņu attiecībām” ietvaros (lzp-2023/1-0248).
+Karšu pārlūks izstrādāts pētījumā &quot;Upju regulēšana 20. gadsimta agro-industriālajā ainavā: Zemgales līdzenuma piemērs&quot;, projekta FLPP &quot;Ūdeņu kultūras: transformatīva pieeja ilgtspējīgām cilvēka-ūdeņu attiecībām&quot; ietvaros (lzp-2023/1-0248).
     </p>
     <p>Autors: Klāss Reinis Dzirkalis, klassdzirkalis@gmail.com</p>
     <p>https://github.com/k-reinis/river-regulation</p>

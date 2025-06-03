@@ -1,10 +1,5 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { RiInformationLine } from "react-icons/ri";
-
-// You can replace this with any icon component you like
-const PlaceholderIcon = () => (
-  <RiInformationLine/>
-);
 
 type MapDescriptionProps = {
   children: React.ReactNode;
