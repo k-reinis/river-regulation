@@ -169,7 +169,10 @@ useEffect(() => {
 
 
   return (
-    <MapContainer center={position} zoom={9} style={{ height: "100vh", width: "100%" }}   scrollWheelZoom={true} zoomControl={true}   minZoom={5}
+    <MapContainer center={position} zoom={9}   style={{
+      height: 'calc(var(--vh, 1vh) * 100)',
+      width: '100%',
+    }}   scrollWheelZoom={true} zoomControl={true}   minZoom={5}
     maxZoom={18}>
       {/* Base Layers */}
       {baseLayers.map(layer =>
@@ -378,7 +381,7 @@ useEffect(() => {
   </button>
 )}
 <MapDescription>
-<p>*Svētes baseina robežas norādītas, jo Svētes baseina upēm pieejama plašāka informācija</p>
+<p>*Svētes baseina robežas norādītas, jo upēm tās robežās pieejama plašāka informācija</p>
     <p>
 Karšu pārlūks izstrādāts pētījumā &quot;Upju regulēšana 20. gadsimta agro-industriālajā ainavā: Zemgales līdzenuma piemērs&quot;, projekta FLPP &quot;Ūdeņu kultūras: transformatīva pieeja ilgtspējīgām cilvēka-ūdeņu attiecībām&quot; ietvaros (lzp-2023/1-0248).
     </p>
