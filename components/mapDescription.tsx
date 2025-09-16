@@ -8,19 +8,17 @@ type MapDescriptionProps = {
 export default function MapDescription({ children }: MapDescriptionProps) {
   const [open, setOpen] = useState(false);
 
-
-
   return (
     <>
       {!open && (
         <button
           style={{
             position: "absolute",
-            right: 15, // adjust if you want
+            right: 20, // adjust if you want
             bottom: 20,
             zIndex: 1100,
             background: "white",
-            borderRadius: "50%",
+            borderRadius: "4px",
             width: 40,
             height: 40,
             border: "1px solid #ccc",
@@ -30,7 +28,13 @@ export default function MapDescription({ children }: MapDescriptionProps) {
             justifyContent: "center",
             cursor: "pointer",
           }}
-          onClick={() => setOpen(true)}
+          onClick={(e) => {
+            e.stopPropagation();
+            setOpen(true);
+          }}
+          onDoubleClick={(e) => e.stopPropagation()}
+          onMouseDown={(e) => e.stopPropagation()}
+          onMouseUp={(e) => e.stopPropagation()}
           aria-label="Show map description"
         >
           <RiInformationLine size={18} />
@@ -51,9 +55,19 @@ export default function MapDescription({ children }: MapDescriptionProps) {
             maxHeight: "60vh",
             overflowY: "auto",
           }}
+          onClick={(e) => e.stopPropagation()}
+          onDoubleClick={(e) => e.stopPropagation()}
+          onMouseDown={(e) => e.stopPropagation()}
+          onMouseUp={(e) => e.stopPropagation()}
         >
           <button
-            onClick={() => setOpen(false)}
+            onClick={(e) => {
+              e.stopPropagation();
+              setOpen(false);
+            }}
+            onDoubleClick={(e) => e.stopPropagation()}
+            onMouseDown={(e) => e.stopPropagation()}
+            onMouseUp={(e) => e.stopPropagation()}
             style={{
               position: "absolute",
               top: 6,
