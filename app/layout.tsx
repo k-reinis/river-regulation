@@ -13,8 +13,15 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Upju regulēšana",
-  description: "Zemgales līdzenuma regulētās upes",
+  title: "Upju regulēšana Svētes baseinā | Ūdeņu kultūras",
+  description:
+    "Interaktīva karte par upju regulēšanu Svētes baseinā un Zemgales līdzenumā 20. gadsimtā. Projekts «Ūdeņu kultūras» (lzp-2023/1-0248).",
+  openGraph: {
+    title: "Upju regulēšana Svētes baseinā",
+    description:
+      "Vēsturiskā upju regulēšana Zemgales līdzenumā – Ūdeņu kultūras.",
+    type: "website",
+  },
 };
 
 export default function RootLayout({
@@ -23,7 +30,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="lv">
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >

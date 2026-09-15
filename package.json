@@ -1,6 +1,13 @@
 {
-  "name": "masters-leaflet-map",
+  "name": "river-regulation",
   "version": "0.1.0",
+  "description": "Interactive historical river-regulation map of the Svēte basin – Water Cultures (lzp-2023/1-0248)",
+  "license": "MIT",
+  "author": "Klāss Reinis Dzirkalis <klassdzirkalis@gmail.com>",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/k-reinis/river-regulation"
+  },
   "private": true,
   "scripts": {
     "dev": "next dev",
