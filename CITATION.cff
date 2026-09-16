@@ -1,0 +1,19 @@
+cff-version: 1.2.0
+message: "If you use this map or its data, please cite it as below."
+title: "River Regulation in the Svēte River Basin"
+abstract: "Interactive map of 20th-century river regulation in the Svēte basin, Zemgale Plain, Latvia, developed within the Water Cultures project (lzp-2023/1-0248)."
+type: software
+authors:
+  - family-names: Dzirkalis
+    given-names: "Klāss Reinis"
+    email: klassdzirkalis@gmail.com
+    affiliation: "University of Latvia"
+repository-code: "https://github.com/k-reinis/river-regulation"
+license: MIT
+keywords:
+  - river regulation
+  - hydrosocial
+  - historical geography
+  - Zemgale
+  - Svēte
+  - Water Cultures
