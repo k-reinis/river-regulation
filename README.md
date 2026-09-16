@@ -2,7 +2,7 @@
 
 Interactive historical river-regulation map developed within the **Water Cultures** research project. The application visualises how the river network of the Svēte basin and the surrounding Zemgale Plain (Latvia) was transformed through 20th-century regulation, drainage and agricultural intensification.
 
-🔗 **Live map:** _add deployment URL_
+🔗 **Live map: https://river-regulation.vercel.app/
 
 ---
 
