@@ -127,7 +127,7 @@ Developed as part of a Master's study at the University of Latvia, within the Wa
 
 ## Citation
 
-If you use this map or its data, please cite the project and author. _Add preferred citation once a DOI or fixed reference is available._
+If you use this map or its data, please cite the project and author. 
 
 ---
 
